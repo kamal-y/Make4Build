@@ -94,3 +94,14 @@
 .icon-pinterest-p:before {
   content: "\f231";
 }
+
+/* Additional aliases for Why Choose Us section */
+.icon-briefcase:before { content: "\e906"; }
+.icon-users:before { content: "\f0c9"; }
+.icon-award:before { content: "\f1d8"; }
+.icon-target:before { content: "\e901"; }
+
+.icon-check:before { content: "\f00c"; }
+.icon-check-square:before { content: "\f14a"; }
+.icon-checkbox:before { content: "\f14a"; }
+.icon-checked:before { content: "\f00c"; }
