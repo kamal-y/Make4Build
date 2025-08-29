@@ -95,10 +95,14 @@ CSS STRUCTURE:
 
 /* on mobile devices below 600px
  */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   :root {
     --header-height: 100px;
     --header-height-min: 80px;
+  }
+
+  .mobile-nav-pages {
+    display: block !important;
   }
 }
 
@@ -2184,6 +2188,7 @@ body.nav-active .nav__block .nav__block-item {
   font-size: calc(1.8em + 2vw);
   line-height: 1;
   font-weight: 900;
+  color: #9e1414; /* Changed color */
 }
 
 .section-header .title span {
@@ -2330,15 +2335,22 @@ body.nav-active .nav__block .nav__block-item {
   font-family: var(--heading-font);
   font-size: 5em;
   font-weight: 900;
-  color: #e9e2e2;
+  color:#e6ccb2;
   position: absolute;
   top: -69px;
   left: -22px;
-  z-index: -1;
+  z-index: 1;
+}
+
+.services-item h3 {
+  position: relative; /* Added for z-index to work */
+  z-index: 2; /* Ensure text is above the number */
 }
 
 .services-item p {
   line-height: 2;
+  position: relative; /* Added for z-index to work */
+  z-index: 2; /* Ensure text is above the number */
 }
 
 @media only screen and (max-width: 1199px) {
@@ -2347,9 +2359,25 @@ body.nav-active .nav__block .nav__block-item {
   }
 }
 
+@media only screen and (max-width: 768px) {
+  .services-item,
+  .how-we-work-item {
+    margin-left: 10px; /* Reduced left margin for small screens */
+    margin-right: 10px; /* Reduced right margin for consistency */
+  }
+
+  .services-item .number,
+  .how-we-work-item .number {
+    font-size: 3em; /* Smaller font size for numbers on small screens */
+    top: -40px; /* Adjust position for smaller font size */
+    left: -10px; /* Adjust position for smaller font size */
+  }
+}
+
 @media only screen and (max-width: 600px) {
-  .services-item {
-    margin-bottom: 50px;
+  .services-item,
+  .how-we-work-item {
+    margin-bottom: 30px; /* Reduced bottom margin for small screens */
   }
 
   .services-item:last-child {
@@ -2362,6 +2390,42 @@ body.nav-active .nav__block .nav__block-item {
 #subscribe figure.subscribe-image {
   margin-bottom: 60px;
   margin-right: 30px;
+}
+
+.how-we-work-item {
+  position: relative;
+  margin-top: 60px;
+  margin-bottom: 30px;
+}
+
+.how-we-work-item .number {
+  font-family: var(--heading-font);
+  font-size: 5em;
+  font-weight: 900;
+  color: #495057;
+  position: absolute;
+  top: -69px;
+  left: -22px;
+  z-index: 1;
+}
+
+.how-we-work-item h3 {
+  color: #fff;
+  position: relative; /* Added for z-index to work */
+  z-index: 2; /* Ensure text is above the number */
+}
+
+.how-we-work-item p {
+  color: var(--bs-light);
+  line-height: 2;
+  position: relative; /* Added for z-index to work */
+  z-index: 2; /* Ensure text is above the number */
+}
+
+@media only screen and (max-width: 600px) {
+  .how-we-work-item {
+    margin-bottom: 50px;
+  }
 }
 
 .subscribe-content input[type="text"] {
@@ -2392,6 +2456,8 @@ footer#footer {
 }
 
 #footer img.footer-logo {
+  max-width: 200px; /* Adjust as needed for larger screens */
+  height: auto;
   margin-bottom: 30px;
 }
 
@@ -2474,6 +2540,12 @@ footer#footer {
   #footer-bottom .copyright,
   #footer-bottom .text-right {
     text-align: center;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  #footer img.footer-logo {
+    max-width: 150px; /* Adjust as needed for smaller screens */
   }
 }
 
@@ -3095,4 +3167,138 @@ footer#footer {
 
 .parallax-wrap .parallax-image {
   position: absolute;
+}
+
+/*----- Why Choose Us Cards -------------------------------------------------*/
+.why-card {
+  background: #fff;
+  border: 1px solid #efefef;
+  border-radius: 6px;
+  padding: 28px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  height: 100%;
+}
+
+.why-card-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.why-icon {
+  font-size: 2.2em;
+  color: var(--accent-color);
+  margin-bottom: 12px;
+}
+
+.why-card h3 {
+  font-size: 1.05em;
+  margin-bottom: 10px;
+  color: #111;
+  text-align: center;
+}
+
+.why-card p {
+  color: var(--body-text-color);
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.why-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+@media only screen and (max-width: 768px) {
+  .why-card {
+    padding: 18px;
+  }
+
+  .why-icon {
+    font-size: 1.6em;
+  }
+
+  .why-card h3 {
+    font-size: 1em;
+  }
+}
+
+/*----- Why Choose Us Cards (minimal classic premium) ----------------------*/
+.why-card {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.04);
+  border-radius: 8px;
+  padding: 30px 26px;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.why-card-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 8px;
+}
+
+.why-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-color);
+  border: 2px solid rgba(197,169,146,0.25);
+  font-size: 1.4em;
+  margin-bottom: 14px;
+  background: transparent;
+}
+
+.why-card h3 {
+  font-size: 1.02em;
+  margin: 0;
+  color: #111;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.2px;
+}
+
+.why-card p {
+  color: var(--body-text-color);
+  text-align: center;
+  margin: 0;
+  font-size: 0.95em;
+}
+
+.why-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 12px 30px rgba(15, 15, 15, 0.06);
+}
+
+@media only screen and (max-width: 768px) {
+  .why-card {
+    padding: 18px;
+  }
+
+  .why-icon {
+    width: 52px;
+    height: 52px;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+  }
+
+  .why-card h3 {
+    font-size: 1em;
+  }
+
+  .why-card p {
+    font-size: 0.92em;
+  }
 }
