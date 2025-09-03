@@ -369,8 +369,9 @@ html {
   box-sizing: border-box;
 }
 
+/* Use Lato for body and content while preserving Montserrat for headings */
 body {
-  font-family: var(--body-font);
+  font-family: "Lato", var(--body-font);
   font-size: 16px;
   line-height: 1.8;
   color: #757575;
@@ -1368,6 +1369,107 @@ This is main CSS file that contains custom style rules used in this template
   transition: 0.5s all ease-out;
 }
 
+/* Lato utility classes provided by user */
+.lato-thin {
+  font-family: "Lato", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.lato-light {
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.lato-regular {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.lato-bold {
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.lato-black {
+  font-family: "Lato", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.lato-thin-italic {
+  font-family: "Lato", sans-serif;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.lato-light-italic {
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.lato-regular-italic {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.lato-bold-italic {
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.lato-black-italic {
+  font-family: "Lato", sans-serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
+/* Apply Lato broadly while preserving Montserrat for headings */
+/* Keep headings and section titles in Montserrat (var(--heading-font)) */
+h1, h2, h3, h4, h5, h6, .section-title {
+  font-family: var(--heading-font);
+  font-weight: 900; /* headings stay bold/heavy */
+}
+
+/* Make navigation labels, body content, buttons, footers use Lato */
+body, p, li, a, .lead-text, .detail, .services-list li,  .testimonial-block, .post-grid .post-content, .footer-menu, .gallery, .iconbox, nav#navbar ul.menu-list a {
+  font-family: "Lato", sans-serif;
+}
+
+/* Fine-grained weights for better typographic hierarchy */
+p, li, .detail, .footer-menu, .gallery, .post-grid .post-content {
+  font-weight: 400; /* regular for paragraphs and general copy */
+}
+
+.lead-text, .services-list li {
+  font-weight: 300; /* lighter for lead/overview texts */
+}
+
+.nav__list-item, .nav__list-item a, .nav__block .nav__block-item, nav#navbar ul.menu-list a {
+  font-weight: 700; /* stronger weight for menu items */
+  font-family: "Lato", sans-serif; /* ensure menu uses Lato as requested */
+}
+
+.btn, .btn.btn-accent, .btn.btn-black, .btn.btn-primary {
+  font-weight: 700; /* bold buttons */
+}
+
+/* Small UI labels & meta text — use lighter weight */
+.iconbox .detail, .copyright, .footer-menu .menu-list li {
+  font-weight: 300;
+}
+
+/* Ensure overlay large nav items don't accidentally inherit heavier heading styles */
+.nav__list-item {
+  font-family: "Lato", sans-serif !important;
+}
+
 .side-nav-bar {
   position: absolute;
   z-index: 10;
@@ -2022,6 +2124,19 @@ body.nav-active .nav__block .nav__block-item {
   text-align: center;
   margin: 0 auto;
   margin-top: 300px;
+}
+
+/* Ensure the small helper lines above buttons stack vertically and center */
+.main-slider .banner-content .btn-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.main-slider .banner-content .btn-wrap .btn-with-line {
+  display: block; /* make these elements occupy full line so they stack */
+  text-align: center;
 }
 
 .main-slider .banner-content h2.banner-title {
@@ -3345,9 +3460,6 @@ footer#footer {
 /* Portfolio external link styles */
 .portfolio-external-link a {
   display: inline-block;
-  margin-top: 8px;
-  font-size: 1.05rem; /* slightly larger */
-  font-weight: 700;
   color: #fbf7ec; /* creamy white */
   text-decoration: none;
   background: transparent;
@@ -3369,7 +3481,119 @@ footer#footer {
   margin-bottom: 1rem;
 }
 
+/* hide helper for small screens */
+.hide-on-small {
+  display: inline;
+}
+
+@media (max-width: 810px) {
+  .hide-on-small {
+    display: none !important;
+  }
+}
+
+/* Animated underline (left-to-right) for links and inline callouts */
+nav#navbar ul.menu-list a,
+.nav__list-item a,
+.footer-menu .menu-list a,
+.portfolio-external-link a,
+.btn-with-line,
+.btn-with-line:link,
+.btn-with-line:visited {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.btn-with-line::after,
+nav#navbar ul.menu-list a::after,
+.nav__list-item a::after,
+.footer-menu .menu-list a::after,
+.portfolio-external-link a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  height: 3px;
+  width: 100%;
+  background: var(--accent-color);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.btn-with-line:hover::after,
+nav#navbar ul.menu-list a:hover::after,
+.nav__list-item a:hover::after,
+.footer-menu .menu-list a:hover::after,
+.portfolio-external-link a:hover::after,
+.btn-with-line:focus::after,
+nav#navbar ul.menu-list a:focus::after {
+  transform: scaleX(1);
+}
+
+/* Respect users' reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .btn-with-line::after,
+  nav#navbar ul.menu-list a::after,
+  .nav__list-item a::after,
+  .footer-menu .menu-list a::after,
+  .portfolio-external-link a::after {
+    transition: none;
+  }
+}
+
 .accent-text {
   color: #9e1414;
   font-weight: 700;
+}
+
+/* About section typography only (no width/layout changes) */
+#about .description {
+  font-family: "Lato", sans-serif;
+}
+
+#about .description .lato-regular {
+  font-weight: 400;
+  font-size: 1rem !important; /* normalize any inline sizes */
+}
+
+#about .description .lato-light {
+  font-weight: 300;
+  font-size: 0.95rem !important;
+}
+
+#about .description h3 {
+  font-family: var(--heading-font);
+  font-size: 1.9rem;
+  margin-bottom: 0.6rem;
+}
+
+#about .description .lead-text {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #222;
+}
+
+/* Slightly larger body text for About section */
+#about .description .lead-text,
+#about .description p {
+  font-size: 1.12rem;
+}
+
+@media (min-width: 1400px) {
+  /* increase for very large screens */
+  #about .description .lead-text,
+  #about .description p {
+    font-size: 1.3rem;
+  }
+}
+
+#about .description ul {
+  margin-left: 1.25rem;
+}
+
+#about .description ul li {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
 }
