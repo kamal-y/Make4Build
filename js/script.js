@@ -177,13 +177,15 @@
     var init = function init() {
       body = document.querySelector('body');
       menu = document.querySelector('.menu-btn');
-      menuItems = document.querySelectorAll('.nav__list-item');
+      // menuItems = document.querySelectorAll('.nav__list-item');
+      menuItems = [...document.querySelectorAll('.nav__list-item, ul.list-unstyled > li')];
       applyListeners();
     };
     var applyListeners = function applyListeners() {
       menu.addEventListener('click', function () {
         return toggleClass(body, 'nav-active');
       });
+      menuItems.forEach(n => n.addEventListener('click', () => menu.click()));
     };
     var toggleClass = function toggleClass(element, stringClass) {
       if (element.classList.contains(stringClass)) element.classList.remove(stringClass);else element.classList.add(stringClass);
