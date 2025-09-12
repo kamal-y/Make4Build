@@ -1351,14 +1351,22 @@ This is main CSS file that contains custom style rules used in this template
   height: var(--header-height);
   display: flex;
   align-items: center;
-  background-color: #fff;
+  /* background-color: #fff; */
+  background-color: #f3f1ed;
+  
   padding: 40px;
   margin-right: 60px;
-  margin-top: -10px;
+  /* margin-top: -10px; */
+
   transition: 0.5s all ease-out;
   width: 150px;
   position: absolute;
   z-index: 1;
+  overflow: hidden;
+}
+.main-logo * {
+  outline: none;
+  border: none;
 }
 
 .main-logo a {
@@ -2146,6 +2154,11 @@ body.nav-active .nav__block .nav__block-item {
   color: #fff;
   text-transform: uppercase;
 
+}
+div.banner-content{
+  background-color: rgba(0, 0, 0, 0.1); /* Semi-transparent background */
+  backdrop-filter: blur(1px); /* Blurs content behind the overlay */
+  border-radius: 20px;
 }
 
 #intro .button-container {
